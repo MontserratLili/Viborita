@@ -1,9 +1,8 @@
-var posicionInicialX = 250;
-var posicionInicialY = 250;
-var contenedor=document.getElementById("contenedor").value;
-var cabezaSerpiente=document.getElementById("cabezaSerpiente");
-var avanzarX= 20;
-var avanzarY= 20;
+var x =cabezaVibora.x.baseVal.value;
+var y = cabezaVibora.y.baseVal.value;
+var contenedor=document.getElementById("lugarDibujo");
+var cabezaSerpiente=document.getElementById("cabezaVibora");
+var avanzar= 50;
 var teclas = {
   UP: 38,
   DOWN: 40,
@@ -11,38 +10,71 @@ var teclas = {
   RIGHT: 39
 };
 
-document.addEventListener("keydown", dibujarTeclado);
-var cuadrito = document.getElementById("area_de_dibujo");
 
-console.log(teclas);
+console.log(x);
+console.log(y);
+console.log(contenedor);
 
-function dibujarTeclado(evento)
-{
-  var x = 10;
-  var y = 10;
-
-  var movimiento =40;
-  switch(evento.keyCode)
-  {
+function viborita(evento){
+  switch(evento.keyCode){
     case teclas.UP:
-      //dibujarLinea(x, y, x, y - movimiento);
-      y = y - movimiento;
-      console.log(y);
+      x = x - avanzar;
+      console.log(x);
+      if(x < 0){
+        finJuego();
+      }
+      else{
+        contenedor.width = x + "px";
+      }
     break;
     case teclas.DOWN:
-      //dibujarLinea(x, y, x, y + movimiento);
-      y = y + movimiento;
+      x = x + avanzar;
+      console.log(x);
+      if(x > 450){
+        finJuego();
+      }
+      else{
+        contenedor.width = x + "px";
+      }
     break;
     case teclas.LEFT:
-      //dibujarLinea(x, y, x - movimiento, y);
-      x = x - movimiento;
+      y = y - avanzar;
+      console.log(y);
+      if(y < 0){
+        finJuego();
+      }
+      else{
+        contenedor.height = y + "px";
+      }
     break;
     case teclas.RIGHT:
-      //dibujarLinea(x, y, x + movimiento, y);
-      x = x + movimiento;
-    break;
-    default:
-      console.log("Otra tecla");
+      y = y + avanzar;
+      console.log(y);
+      if(y > 450){
+        finJuego();
+      }
+      else{
+        contenedor.height = y + "px";
+      }
     break;
   }
 }
+
+function finJuego(){
+  alert("Perdiste!!!");
+  window.removeEventListener("keydown", viborita);
+}
+
+// function comida(){
+// var rectangulo = document.createElement("rect");
+// rectangulo.setAttribute("x", 10);
+// rectangulo.setAttribute("y", 10);
+// rectangulo.setAttribute("width", "50");
+// rectangulo.setAttribute("height", "50");
+// rectangulo.setAttribute("fill", "yello");
+// rectangulo.setAttribute("id", "a");
+// console.log(rectangulo);
+// }
+
+document.addEventListener("keydown", viborita);
+//document.addEventListener("keydown", comida);

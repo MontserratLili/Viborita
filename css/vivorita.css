@@ -1,14 +1,13 @@
-#cabezaSerpiente{
-  width: 20px;
-  height: 20px;
-  background-color: #580EB4;
+body{
+  background-color: #008B8B;
+  background-image: url("assets/corazon.png");
 }
-
-#contenedor{
-  width: 500px;
-  height: 500px;
-  border: solid 1px;
-  border-color: black;
-  margin-right: auto;
-  margin-left: auto;
+svg{
+  position: absolute;
+  background-color: #00CED1;
+   z-index: 5;  top: 10em; left: 35em;
+}
+button{
+  position: absolute;
+  z-index: 3; top: 5em; left: 50em;
 }
